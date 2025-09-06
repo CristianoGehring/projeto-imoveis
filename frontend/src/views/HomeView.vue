@@ -97,29 +97,31 @@
 
         <div v-else class="properties-grid">
           <div v-for="property in properties" :key="property.id" class="property-card">
-            <div class="property-image">
-              <img :src="property.image || '/placeholder-house.jpg'" :alt="property.title">
-              <div class="property-type">{{ property.type }}</div>
-            </div>
-            
-            <div class="property-content">
-              <h3>{{ property.title }}</h3>
-              <p class="property-location">
-                {{ property.neighborhood?.name }}, {{ property.city?.name }}
-              </p>
-              <p class="property-description">{{ property.description }}</p>
-              
-              <div class="property-features">
-                <span class="feature">{{ property.bedrooms }} quartos</span>
+            <router-link :to="`/imovel/${property.id}`" class="property-link">
+              <div class="property-image">
+                <img :src="property.image || '/placeholder-house.jpg'" :alt="property.title">
+                <div class="property-type">{{ property.type }}</div>
               </div>
               
-              <div class="property-footer">
-                <div class="price">R$ {{ formatPrice(property.price) }}</div>
-                <button @click="showInterestModal(property)" class="btn-interest">
-                  Tenho Interesse
-                </button>
+              <div class="property-content">
+                <h3>{{ property.title }}</h3>
+                <p class="property-location">
+                  {{ property.neighborhood?.name }}, {{ property.city?.name }}
+                </p>
+                <p class="property-description">{{ property.description }}</p>
+                
+                <div class="property-features">
+                  <span class="feature">{{ property.bedrooms }} quartos</span>
+                </div>
+                
+                <div class="property-footer">
+                  <div class="price">R$ {{ formatPrice(property.price) }}</div>
+                </div>
               </div>
-            </div>
+            </router-link>
+            <button @click="showInterestModal(property)" class="btn-interest">
+              Tenho Interesse
+            </button>
           </div>
         </div>
       </div>
@@ -367,9 +369,14 @@ onMounted(async () => {
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
+}
+
+/* Apenas o conteúdo da seção hero mantém limite de largura para melhor legibilidade */
+.hero .container {
+  max-width: 1400px;
 }
 
 .filters {
@@ -497,8 +504,9 @@ onMounted(async () => {
 
 .properties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  max-width: none;
 }
 
 .property-card {
@@ -507,11 +515,18 @@ onMounted(async () => {
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
 }
 
 .property-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.property-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .property-image {
@@ -595,6 +610,10 @@ onMounted(async () => {
   cursor: pointer;
   font-size: 14px;
   transition: background 0.3s;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
 }
 
 .btn-interest:hover {
@@ -870,6 +889,10 @@ textarea:focus {
   .footer-info {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  
+  .container {
+    padding: 0 20px;
   }
 }
 </style>

@@ -210,9 +210,9 @@ onMounted(async () => {
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .page-header {
@@ -547,6 +547,10 @@ onMounted(async () => {
   
   .actions {
     flex-direction: column;
+  }
+  
+  .container {
+    padding: 0 20px;
   }
 }
 </style>

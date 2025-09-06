@@ -11,6 +11,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/imovel/:id',
+      name: 'property-detail',
+      component: () => import('../views/PropertyDetailView.vue'),
+    },
+    {
       path: '/admin/login',
       name: 'admin-login',
       component: () => import('../views/AdminLoginView.vue'),

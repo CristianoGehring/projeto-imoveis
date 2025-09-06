@@ -5,7 +5,7 @@
 Este é um exercício prático completo para desenvolvimento de um sistema de imobiliária, dividido em duas partes:
 
 - **Frontend**: Desenvolvido em Vue.js 3 + Vite (✅ COMPLETO)
-- **Backend**: Para ser desenvolvido pelo aluno em Node.js + Express (📝 EXERCÍCIO)
+- **Backend**: Para ser desenvolvido pelo aluno (📝 EXERCÍCIO)
 
 ## 🎯 Objetivos Pedagógicos
 
